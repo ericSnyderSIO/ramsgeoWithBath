@@ -55,7 +55,7 @@ c = ssp(:,2);
 
 for findex=1:length(f)
     
-    make_in_file(FileNamePrefix, fpn, f, zs, zrr, r, bty, z, c)
+    make_in_file(FileNamePrefix, fpn, f(findex), zs, zrr, r, bty, z, c)
     
     %run RAM
     shellcmd=[RAM.type ' ' RAM.inputfilename];
