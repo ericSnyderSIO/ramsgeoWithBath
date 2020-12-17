@@ -11,7 +11,7 @@ fid = fopen(fpn, 'at');
 fprintf(fid, FileNamePrefix);
 fprintf(fid, '\n');
 
-% line 2: f, zs, zrr 
+% line 2: f, zs, zrr
 % f = source frequency (Hz)
 % zs = source depth (m)
 % zr = receiver depth for tl.line (m)
