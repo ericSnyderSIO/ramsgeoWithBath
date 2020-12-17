@@ -2,6 +2,7 @@
 %
 % Martin Gassmann, 2-June-2017
 % Adapted and rewritten for models with bathymetry by Eric Snyder, 3-Dec-2020
+% Fixed output directory and file name Vanessa ZoBell, 17-Dec-2020
 
 %% Inilize
 
@@ -60,16 +61,16 @@ for findex=1:length(f)
     shellcmd=[RAM.type ' ' RAM.inputfilename];
     dos(shellcmd);
     %rename output files
-    shellcmd=['rename ' RAM.outputfilename.pgrid ' ' FileNamePrefix num2str(f(findex)) 'Hz_' RAM.outputfilename.pgrid];
+    shellcmd=['rename ' RAM.outputfilename.pgrid ' ' FileNamePrefix '_' num2str(f(findex)) 'Hz_' RAM.outputfilename.pgrid];
     dos(shellcmd);
     %move output files
-    shellcmd=['move ' FileNamePrefix num2str(f(findex)) 'Hz_' RAM.outputfilename.pgrid ' ' RAM.path ProjectName];
+    shellcmd=['move ' FileNamePrefix '_' num2str(f(findex)) 'Hz_' RAM.outputfilename.pgrid ' ' RAM.path '\' ProjectName];
     dos(shellcmd);
     %copy ram(s)geo.in
-    shellcmd=['copy ' RAM.inputfilename ' ' RAM.path ProjectName];
+    shellcmd=['copy ' RAM.inputfilename ' ' RAM.path '\' ProjectName];
     dos(shellcmd);            
-    shellcmd=['rename ' RAM.path ProjectName '\' RAM.inputfilename ' ' FileNamePrefix num2str(f(findex)) 'Hz_' RAM.inputfilename];
-    dos(shellcmd);            
+    shellcmd=['rename ' RAM.path '\' ProjectName '\' RAM.inputfilename ' ' FileNamePrefix num2str(f(findex)) 'Hz_' RAM.inputfilename];
+    dos(shellcmd);           
 end    
 
 
@@ -80,7 +81,7 @@ end
 % that were compiled by ActUp people
 
 %Read in Complex Pressure Grid from RAMSgeo output file (p.grid)
-PGrid = ReadRamPGridmod( [RAM.path ProjectName '\' FileNamePrefix num2str(f(findex)) 'Hz_' RAM.outputfilename.pgrid] );
+PGrid = ReadRamPGridmod( [RAM.path '\' ProjectName '\' FileNamePrefix '_' num2str(f(findex)) 'Hz_' RAM.outputfilename.pgrid] );
 
 % Plot
 figure;
